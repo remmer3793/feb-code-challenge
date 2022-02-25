@@ -24,8 +24,8 @@ export default function computeTotalPrice(productsArray) {
     const greatestCount = Math.max(...countsByKind)
     const eachDifferentCount = Array(greatestCount).fill(0).map((e, i) => i + 1)
     return eachDifferentCount.map(count => {
-        const matchingCountsByKind = countsByKind.filter(c => c >= count).length
-        const absoluteDiscount = 1 - discounts[matchingCountsByKind]
-        return matchingCountsByKind * absoluteDiscount * price
+        const numberOfKindsMatchingCount = countsByKind.filter(c => c >= count).length
+        const absoluteDiscount = 1 - discounts[numberOfKindsMatchingCount]
+        return numberOfKindsMatchingCount * absoluteDiscount * price
     }).reduce((total, price) => total + price, 0)
 }
